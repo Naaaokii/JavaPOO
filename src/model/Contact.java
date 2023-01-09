@@ -8,4 +8,11 @@ public class Contact {
     private String _telephone;
     private Date _dateNaissance;
 
+    public String getNom(){
+        return this._nom;
+    }
+
+    public void setNom(String valeur){
+        this._nom = valeur; 
+    }
 }

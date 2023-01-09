@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import model.Contact;
+
 public class App {
 
     private static Scanner _scan = new Scanner(System.in);
@@ -24,7 +26,8 @@ public class App {
     }
 
     private static void ajouterContact(){
-
+        Contact c = new Contact();
+        c.setNom("Bob");
     }
 
     public static void afficherMenu(){
