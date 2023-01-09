@@ -1,4 +1,5 @@
 package model;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Contact {
@@ -7,7 +8,7 @@ public class Contact {
     private String mail;
     private String telephone;
     private Date dateNaissance;
-    
+
     public String getNom() {
         return nom;
     }
@@ -35,8 +36,9 @@ public class Contact {
     public Date getDateNaissance() {
         return dateNaissance;
     }
-    public void setDateNaissance(Date dateNaissance) {
-        this.dateNaissance = dateNaissance;
+    public void setDateNaissance(String dateNaissance) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+        this.dateNaissance = format.parse(dateNaissance);
     }
 
     

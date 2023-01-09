@@ -27,7 +27,16 @@ public class App {
 
     private static void ajouterContact(){
         Contact c = new Contact();
-        c.setNom("Bob");
+        System.out.println("Saisir le nom :");
+        c.setNom(_scan.nextLine());
+        System.out.println("Saisir le prénom :");
+        c.setPrenom(_scan.nextLine());
+        System.out.println("Saisir le mail :");
+        c.setMail(_scan.nextLine());
+        System.out.println("Saisir le téléphone :");
+        c.setTelephone(_scan.nextLine());
+        System.out.println("Saisir la date de naissance :");
+        c.setNom(_scan.nextLine());  
     }
 
     public static void afficherMenu(){
