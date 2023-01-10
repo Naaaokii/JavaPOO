@@ -188,7 +188,10 @@ public class Contact {
 
 
 
-    public static ArrayList<Contact> chercherContact(String nom) throws IOException {        
+    public static ArrayList<Contact> chercherContact(String nom) throws IOException { 
+        // Mettre le nom en majuscule
+        nom = nom.toUpperCase();
+
         // Créer une ArrayList de Contact
         ArrayList<Contact> contactCherche = new ArrayList<>();
         

@@ -47,7 +47,7 @@ public class App {
                     // Quitter la boucle infinie
                     return;
                 default:
-                    System.out.println("Fais gaffe !!");
+                    System.out.println("Fais gaffe, ce n'est point la bonne touche !!");
                     break;
             }
             afficherMenu();
