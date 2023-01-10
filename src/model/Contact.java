@@ -51,7 +51,7 @@ public class Contact {
     }
 
     // Déclarer une méthode nommée "setTelephone" qui prend en argument une chaîne de caractères et qui peut lever une ParseException
-    public void setTelephone(String telephone) throws ParseException {
+    public void setTelephone(String telephone) throws ParseException { //exception d'analyse
     
     // Vérifier le format du numéro de téléphone
     // L'expression régulière permet de vérifier si le numéro est préfixé par "+33", "0033" ou simplement "0" et s'il est espacé par "", "." ou "-"
@@ -75,6 +75,8 @@ public class Contact {
         return mail;
     }
 
+
+
     // Déclarer une méthode nommée "setMail" qui prend en argument une chaîne de caractères et qui peut lever une ParseException
     public void setMail(String mail) throws ParseException {
         
@@ -95,6 +97,8 @@ public class Contact {
         }
     }
 
+
+
     public Date getDateNaissance() {
         return dateNaissance;
     }
@@ -110,8 +114,11 @@ public class Contact {
         this.dateNaissance = dateFormat.parse(dateNaissance); 
     }
 
+
+
+
     // Déclarer une méthode nommée "sauvegarderContact" qui peut lever une IOException
-    public void sauvegarderContact() throws IOException {
+    public void sauvegarderContact() throws IOException { //exception fichier 
         
         // Créer un objet PrintWriter qui écrira dans un fichier nommé "contacts.csv" en utilisant l'option "true" pour ajouter du contenu à la fin du fichier
         PrintWriter printwriter = new PrintWriter(new BufferedWriter(new FileWriter("contacts.csv", true)));
@@ -124,6 +131,9 @@ public class Contact {
             printwriter.close();
         }
     }
+
+
+
 
     // Déclarer une méthode statique nommée "lister" qui renvoie une ArrayList de Contact et qui peut lever une IOException
     public static ArrayList<Contact> listerContacts() throws IOException {
@@ -142,17 +152,17 @@ public class Contact {
             while (ligne != null) {
                 
                 // Séparer les différentes informations de la ligne en utilisant le séparateur défini par la constante "SEPARATEUR"
-                String[] tab = ligne.split(SEPARATEUR);
+                String[] tableauContact = ligne.split(SEPARATEUR);
                 
                 // Créer un objet Contact
                 Contact contact = new Contact();
                 
                 // Définir les différentes informations du contact avec les valeurs du tableau
-                contact.setNom(tab[0]);
-                contact.setPrenom(tab[1]);
-                contact.setMail(tab[2]);
-                contact.setTelephone(tab[3]);
-                contact.setDateNaissance(tab[4]);
+                contact.setNom(tableauContact[0]);
+                contact.setPrenom(tableauContact[1]);
+                contact.setMail(tableauContact[2]);
+                contact.setTelephone(tableauContact[3]);
+                contact.setDateNaissance(tableauContact[4]);
                 
                 // Ajouter l'objet Contact à la liste
                 listeContact.add(contact);
@@ -160,10 +170,10 @@ public class Contact {
                 // Lire la ligne suivante du fichier
                 ligne = lectureFichier.readLine();
             }
-        } catch (ParseException e) {
+        } catch (ParseException exception) {
             // Afficher le message de l'exception ParseException
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
+            System.out.println(exception.getMessage());
+        } catch (IOException exception) {
             // Afficher le message "Erreur de lecture sur le fichier" en cas d'exception IOException
             System.out.println("Erreur de lecture sur le fichier");
         } finally {
@@ -175,6 +185,9 @@ public class Contact {
         return listeContact;
     }
 
+
+
+    
     // Redéfinir la méthode strContactEnCours() héritée de la classe Object pour renvoyer une chaîne de caractères représentant l'objet Contact
     public String strContactEnCours() {
         // Créer un objet StringBuilder vide
@@ -197,10 +210,10 @@ public class Contact {
         builder.append(SEPARATEUR);
         
         // Créer un objet SimpleDateFormat avec le format "dd/MM/yyyy"
-        SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
         
         // Ajouter la date de naissance de l'objet au format "dd/MM/yyyy"
-        builder.append(dtf.format(getDateNaissance()));
+        builder.append(formatDate.format(getDateNaissance()));
         
         // Renvoyer la chaîne de caractères contenue dans l'objet StringBuilder
         return builder.toString();

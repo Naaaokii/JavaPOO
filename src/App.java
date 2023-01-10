@@ -44,6 +44,8 @@ public class App {
         }
     }
 
+
+
     public static void afficherMenu() {
         // Créer une liste de chaînes de caractères pour stocker les éléments du menu
         ArrayList<String> menus = new ArrayList<>();
@@ -56,6 +58,9 @@ public class App {
             System.out.println(s);
         }
     }
+
+
+
 
     // Méthode qui permet d'ajouter un contact
     private static void ajouterContact() {
@@ -118,6 +123,9 @@ public class App {
             System.out.println("Erreur d'enregistrement");
         }
     }
+
+
+
 
     // Méthode qui affiche la liste des contacts
     private static void listerContact() {
