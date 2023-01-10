@@ -32,9 +32,6 @@ public class App {
                     listerContact();
                     break;
                 case "3":
-                    // Créer un objet Contact
-                  
-                    
                     // Demander de saisir le nom du contact recherché
                     System.out.println("Saisir le nom :");
 
