@@ -3,6 +3,7 @@ package model;
 // Importer des classes nécessaires pour la lecture et l'écriture de fichiers, la gestion des dates et des expressions régulières
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Date;
 import java.text.ParseException;
 import java.util.regex.Matcher;
@@ -13,6 +14,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.Collections;
 
 
 
@@ -221,7 +223,11 @@ public class Contact {
                 if (tableauContact[0].equals(nom)){
                     // Ajouter l'objet Contact à la liste
                     contactCherche.add(contact);
-                    System.out.println(contact.getNom() + " " + contact.getPrenom() + " " + contact.getMail() + " " + contact.getTelephone() + " " + contact.getDateNaissance());
+                    System.out.println(contact.getNom() + " " 
+                    + contact.getPrenom() + " " 
+                    + contact.getMail() + " " 
+                    + contact.getTelephone() + " " 
+                    + contact.getDateNaissance());
                 }
 
                
