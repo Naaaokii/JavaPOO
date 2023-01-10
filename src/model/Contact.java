@@ -110,7 +110,7 @@ public class Contact {
         // Créer un format de date (jour/mois/année)
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         
-        // Définir l'attribut "dateNaissance" de l'objet avec la valeur de la chaîne de caractères (qui se fait parse()) selon le format de date
+        // Définir l'attribut "dateNaissance" de l'objet avec la valeur de la chaîne de caractères (qui se fait parse()) selon le format de date)
         // Cette méthode renvoie une date ou une valeur nulle (dans le cas où la chaîne n'a pas été traitée en raison d'une erreur)
         this.dateNaissance = dateFormat.parse(dateNaissance); 
     }
