@@ -166,7 +166,7 @@ public class Contact {
                 contact.setDateNaissance(tableauContact[4]);
                 
                 // Ajouter l'objet Contact à la liste
-                listeContact.add(contact);
+                listeContact.add(contact);                
                 
                 // Lire la ligne suivante du fichier
                 ligne = lectureFichier.readLine();
@@ -181,10 +181,64 @@ public class Contact {
             // Fermer le flux de données dans tous les cas
             lectureFichier.close();
         }
-        
         // Renvoyer la liste de contacts
         return listeContact;
     }
+
+
+
+
+    public static ArrayList<Contact> chercherContact(String nom) throws IOException {        
+        // Créer une ArrayList de Contact
+        ArrayList<Contact> contactCherche = new ArrayList<>();
+        
+        // Créer un objet BufferedReader qui lira dans un fichier nommé "contacts.csv"
+        BufferedReader lectureFichier = new BufferedReader(new FileReader("contacts.csv"));
+        
+        try {
+            // Lire la première ligne du fichier
+            String ligne = lectureFichier.readLine();
+            
+            // Tant qu'il y a des lignes à lire dans le fichier
+            while (ligne != null) {
+                
+                // Séparer les différentes informations de la ligne en utilisant le séparateur défini par la constante "SEPARATEUR"
+                String[] tableauContact = ligne.split(SEPARATEUR);
+                
+                // Créer un objet Contact
+                Contact contact = new Contact();
+                
+                // Définir les différentes informations du contact avec les valeurs du tableau
+                contact.setNom(tableauContact[0]);
+                contact.setPrenom(tableauContact[1]);
+                contact.setMail(tableauContact[2]);
+                contact.setTelephone(tableauContact[3]);
+                contact.setDateNaissance(tableauContact[4]);
+
+                if (tableauContact[0].equals(nom)){
+                    // Ajouter l'objet Contact à la liste
+                    contactCherche.add(contact);
+                    System.out.println(contact.getNom() + " " + contact.getPrenom() + " " + contact.getMail() + " " + contact.getTelephone() + " " + contact.getDateNaissance());
+                }
+
+               
+                // Lire la ligne suivante du fichier
+                ligne = lectureFichier.readLine();
+            }
+        } catch (ParseException exception) {
+            // Afficher le message de l'exception ParseException
+            System.out.println(exception.getMessage());
+        } catch (IOException exception) {
+            // Afficher le message "Erreur de lecture sur le fichier" en cas d'exception IOException
+            System.out.println("Erreur de lecture sur le fichier");
+        } finally {
+            // Fermer le flux de données dans tous les cas
+            lectureFichier.close();
+        }
+        // Renvoyer la liste de contacts
+        return contactCherche;
+    }
+
 
 
 

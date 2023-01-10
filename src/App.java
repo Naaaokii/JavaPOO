@@ -31,6 +31,16 @@ public class App {
                     // Appeler la méthode "listerContact"
                     listerContact();
                     break;
+                case "3":
+                    // Créer un objet Contact
+                  
+                    
+                    // Demander de saisir le nom du contact recherché
+                    System.out.println("Saisir le nom :");
+
+                    // Appeler la méthode "chercherContact" de l'objet contact
+                    Contact.chercherContact(_scan.nextLine());
+                    break;
                 case "q":
                     // Fermer le flux de données de l'objet Scanner
                     _scan.close();
@@ -52,6 +62,7 @@ public class App {
         menus.add("-- MENU --");
         menus.add("1- Ajouter un contact");
         menus.add("2- Lister les contacts");
+        menus.add("3- Chercher un contact");
         menus.add("q- Quitter");
         // Pour chaque élément de la liste, afficher la chaîne de caractères
         for (String s : menus) {
