@@ -59,7 +59,10 @@ public class App {
         menus.add("-- MENU --");
         menus.add("1- Ajouter un contact");
         menus.add("2- Lister les contacts");
-        menus.add("3- Chercher un contact");
+        menus.add("3- Chercher un contact avec le nom");
+        menus.add("4- Chercher un contact avec la date de naissance"); // A faire
+        menus.add("u- Modifier un contact"); // A faire
+        menus.add("d- Supprimer un contact"); // A faire
         menus.add("q- Quitter");
         // Pour chaque élément de la liste, afficher la chaîne de caractères
         for (String s : menus) {
