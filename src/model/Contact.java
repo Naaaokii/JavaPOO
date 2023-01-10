@@ -1,21 +1,21 @@
-// Déclarer un package nommé "model"
 package model;
 
 // Importer des classes nécessaires pour la lecture et l'écriture de fichiers, la gestion des dates et des expressions régulières
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.text.ParseException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-// Déclarer une classe publique nommée "Contact"
+
+
 public class Contact {
     
     // Déclarer une constante publique et statique nommée "SEPARATEUR" qui contient un séparateur de chaîne de caractères
@@ -61,12 +61,12 @@ public class Contact {
     // Vérifier si le paramètre "telephone" correspond à l'expression régulière
     if (testTelephone.matches()) {
         
-        // Si c'est le cas, définir l'attribut "telephone" de l'objet avec la valeur du paramètre "telephone"
+        // Si oui, définir l'attribut "telephone" de l'objet avec la valeur du paramètre "telephone"
         this.telephone = telephone;
         
     } else {
         
-        // Si ce n'est pas le cas, lever une ParseException avec le message "Le format du numéro est incorrect"
+        // Si non, lever une ParseException avec le message "Le format du numéro est incorrect"
         throw new ParseException("Le format du numéro est incorrect", 0);
     }
 }
@@ -85,12 +85,12 @@ public class Contact {
         // Vérifier si le paramètre "mail" correspond à l'expression régulière
         if (testMail.matches()) {
             
-            // Si c'est le cas, définir l'attribut "mail" de l'objet avec la valeur du paramètre "mail"
+            // Si oui, définir l'attribut "mail" de l'objet avec la valeur du paramètre "mail"
             this.mail = mail;
             
         } else {
             
-            // Si ce n'est pas le cas, lever une ParseException avec le message "Le format du mail est incorrect"
+            // Si non, lever une ParseException avec le message "Le format du mail est incorrect"
             throw new ParseException("Le format du mail est incorrect.", 0);
         }
     }
@@ -102,41 +102,41 @@ public class Contact {
     // Déclarer une méthode nommée "setDateNaissance" qui prend en argument une chaîne de caractères et qui peut lever une ParseException
     public void setDateNaissance(String dateNaissance) throws ParseException {
         
-        // Créer un format de date, jour/mois/année
+        // Créer un format de date (jour/mois/année)
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         
-        // Définir l'attribut "dateNaissance" de l'objet avec la valeur de la chaîne de caractères parsée selon le format de date
+        // Définir l'attribut "dateNaissance" de l'objet avec la valeur de la chaîne de caractères (qui se fait parse()) selon le format de date
         // Cette méthode renvoie une date ou une valeur nulle (dans le cas où la chaîne n'a pas été traitée en raison d'une erreur)
         this.dateNaissance = dateFormat.parse(dateNaissance); 
     }
 
-    // Déclarer une méthode nommée "enregistrer" qui peut lever une IOException
-    public void enregistrer() throws IOException {
+    // Déclarer une méthode nommée "sauvegarderContact" qui peut lever une IOException
+    public void sauvegarderContact() throws IOException {
         
         // Créer un objet PrintWriter qui écrira dans un fichier nommé "contacts.csv" en utilisant l'option "true" pour ajouter du contenu à la fin du fichier
-        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("contacts.csv", true)));
+        PrintWriter printwriter = new PrintWriter(new BufferedWriter(new FileWriter("contacts.csv", true)));
         
         try {
             // Écrire la chaîne de caractères représentant l'objet courant dans le fichier
-            pw.println(this.toString());
+            printwriter.println(this.strContactEnCours());
         } finally {
             // Fermer le flux de données lorsque la méthode est terminée
-            pw.close();
+            printwriter.close();
         }
     }
 
     // Déclarer une méthode statique nommée "lister" qui renvoie une ArrayList de Contact et qui peut lever une IOException
-    public static ArrayList<Contact> lister() throws IOException {
+    public static ArrayList<Contact> listerContacts() throws IOException {
         
         // Créer une ArrayList de Contact
-        ArrayList<Contact> list = new ArrayList<>();
+        ArrayList<Contact> listeContact = new ArrayList<>();
         
         // Créer un objet BufferedReader qui lira dans un fichier nommé "contacts.csv"
-        BufferedReader buf = new BufferedReader(new FileReader("contacts.csv"));
+        BufferedReader lectureFichier = new BufferedReader(new FileReader("contacts.csv"));
         
         try {
             // Lire la première ligne du fichier
-            String ligne = buf.readLine();
+            String ligne = lectureFichier.readLine();
             
             // Tant qu'il y a des lignes à lire dans le fichier
             while (ligne != null) {
@@ -145,20 +145,20 @@ public class Contact {
                 String[] tab = ligne.split(SEPARATEUR);
                 
                 // Créer un objet Contact
-                Contact c = new Contact();
+                Contact contact = new Contact();
                 
                 // Définir les différentes informations du contact avec les valeurs du tableau
-                c.setNom(tab[0]);
-                c.setPrenom(tab[1]);
-                c.setMail(tab[2]);
-                c.setTelephone(tab[3]);
-                c.setDateNaissance(tab[4]);
+                contact.setNom(tab[0]);
+                contact.setPrenom(tab[1]);
+                contact.setMail(tab[2]);
+                contact.setTelephone(tab[3]);
+                contact.setDateNaissance(tab[4]);
                 
                 // Ajouter l'objet Contact à la liste
-                list.add(c);
+                listeContact.add(contact);
                 
                 // Lire la ligne suivante du fichier
-                ligne = buf.readLine();
+                ligne = lectureFichier.readLine();
             }
         } catch (ParseException e) {
             // Afficher le message de l'exception ParseException
@@ -168,42 +168,41 @@ public class Contact {
             System.out.println("Erreur de lecture sur le fichier");
         } finally {
             // Fermer le flux de données dans tous les cas
-            buf.close();
+            lectureFichier.close();
         }
         
         // Renvoyer la liste de contacts
-        return list;
+        return listeContact;
     }
 
-    // Redéfinir la méthode toString() héritée de la classe Object pour renvoyer une chaîne de caractères représentant l'objet Contact
-    @Override
-    public String toString() {
+    // Redéfinir la méthode strContactEnCours() héritée de la classe Object pour renvoyer une chaîne de caractères représentant l'objet Contact
+    public String strContactEnCours() {
         // Créer un objet StringBuilder vide
-        StringBuilder build = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         
         // Ajouter le nom de l'objet suivi du séparateur
-        build.append(getNom());
-        build.append(SEPARATEUR);
+        builder.append(getNom());
+        builder.append(SEPARATEUR);
         
         // Ajouter le prénom de l'objet suivi du séparateur
-        build.append(getPrenom());
-        build.append(SEPARATEUR);
+        builder.append(getPrenom());
+        builder.append(SEPARATEUR);
         
         // Ajouter le mail de l'objet suivi du séparateur
-        build.append(getMail());
-        build.append(SEPARATEUR);
+        builder.append(getMail());
+        builder.append(SEPARATEUR);
         
         // Ajouter le numéro de téléphone de l'objet suivi du séparateur
-        build.append(getTelephone());
-        build.append(SEPARATEUR);
+        builder.append(getTelephone());
+        builder.append(SEPARATEUR);
         
         // Créer un objet SimpleDateFormat avec le format "dd/MM/yyyy"
         SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy");
         
         // Ajouter la date de naissance de l'objet au format "dd/MM/yyyy"
-        build.append(dtf.format(getDateNaissance()));
+        builder.append(dtf.format(getDateNaissance()));
         
         // Renvoyer la chaîne de caractères contenue dans l'objet StringBuilder
-        return build.toString();
+        return builder.toString();
     }
 }
