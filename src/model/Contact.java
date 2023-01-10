@@ -43,7 +43,8 @@ public class Contact {
     }
 
     public void setPrenom(String prenom) {
-        this.prenom = prenom;
+        // Mettre la première lettre du prénom en majuscule avant de l'assigner à l'attribut "prenom"
+        this.prenom = prenom.replaceFirst(".",(prenom.charAt(0)+"").toUpperCase());
     }
 
     public String getTelephone() {
@@ -187,7 +188,7 @@ public class Contact {
 
 
 
-    
+
     // Redéfinir la méthode strContactEnCours() héritée de la classe Object pour renvoyer une chaîne de caractères représentant l'objet Contact
     public String strContactEnCours() {
         // Créer un objet StringBuilder vide
