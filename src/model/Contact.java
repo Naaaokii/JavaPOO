@@ -136,7 +136,7 @@ public class Contact {
 
 
 
-    // Déclarer une méthode statique nommée "lister" qui renvoie une ArrayList de Contact et qui peut lever une IOException
+    // Déclarer une méthode statique nommée "listerContacts" qui renvoie une ArrayList de Contact et qui peut lever une IOException
     public static ArrayList<Contact> listerContacts() throws IOException {
         
         // Créer une ArrayList de Contact
