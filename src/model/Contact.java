@@ -3,11 +3,15 @@ package model;
 // Importer des classes nécessaires pour la lecture et l'écriture de fichiers, la gestion des dates et des expressions régulières
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Date;
 import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.lang.model.element.Element;
+
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,7 +22,7 @@ import java.util.Collections;
 
 
 
-public class Contact {
+public class Contact implements Comparable{
     
     // Déclarer une constante publique et statique nommée "SEPARATEUR" qui contient un séparateur de chaîne de caractères
     public static final String SEPARATEUR = ";"; //";" est le séparateur utilisé dans le fichier csv
@@ -128,7 +132,7 @@ public class Contact {
         
         try {
             // Écrire la chaîne de caractères représentant l'objet courant dans le fichier
-            printwriter.println(this.strContactEnCours());
+            printwriter.println(this.toString());
         } finally {
             // Fermer le flux de données lorsque la méthode est terminée
             printwriter.close();
@@ -137,6 +141,9 @@ public class Contact {
 
 
 
+    
+
+    
 
     // Déclarer une méthode statique nommée "listerContacts" qui renvoie une ArrayList de Contact et qui peut lever une IOException
     public static ArrayList<Contact> listerContacts() throws IOException {
@@ -251,9 +258,9 @@ public class Contact {
 
 
 
-
-    // Redéfinir la méthode strContactEnCours() héritée de la classe Object pour renvoyer une chaîne de caractères représentant l'objet Contact
-    public String strContactEnCours() {
+    @Override
+    // Redéfinir la méthode toString() héritée de la classe Object pour renvoyer une chaîne de caractères représentant l'objet Contact
+    public String toString() {
         // Créer un objet StringBuilder vide
         StringBuilder builder = new StringBuilder();
         
@@ -281,5 +288,11 @@ public class Contact {
         
         // Renvoyer la chaîne de caractères contenue dans l'objet StringBuilder
         return builder.toString();
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        // TODO Auto-generated method stub
+        return 0;
     }
 }

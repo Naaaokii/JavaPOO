@@ -1,11 +1,13 @@
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 import model.Contact;
 
-public class App {
+public class App{
     
     // Créer un objet Scanner qui permettra de lire les entrées de l'utilisateur
     private static Scanner _scan = new Scanner(System.in);
@@ -29,7 +31,7 @@ public class App {
                     break;
                 case "2":
                     // Appeler la méthode "listerContact"
-                    listerContact();
+                    trierContact();
                     break;
                 case "3":
                     // Demander de saisir le nom du contact recherché
@@ -71,6 +73,17 @@ public class App {
     }
 
 
+    public static void trierContact() throws IOException{
+            ArrayList<Contact> list = Contact.listerContacts();
+            Collections.sort(list, new Comparator<Contact>() {
+            @Override
+            public int compare(Contact c1, Contact c2) {
+                return c1.getNom().compareTo(c2.getNom());
+            }
+            });
+            String str = list.toString().replaceAll(",", "\n");
+            System.out.println(str);
+    }
 
 
     // Méthode qui permet d'ajouter un contact
