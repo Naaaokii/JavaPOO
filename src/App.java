@@ -32,7 +32,9 @@ public class App{
                 case "2":
                     System.out.println("1- Par ordre croissant");
                     System.out.println("2- Par ordre décroissant");
-                    System.out.println("a- Annuler");
+                    System.out.println("3- Par ordre Chronologique");
+                    System.out.println("4- Par ordre Chronologique inversé");
+                    System.out.println("q- Quitter");
                     String choixtri = _scan.nextLine();
                     switch(choixtri){
                         case "1":
@@ -41,7 +43,13 @@ public class App{
                         case "2":
                             trierContact(2);
                             break;
-                        case "a":
+                        case "3":
+                            trierContact(3);
+                            break;
+                        case "4":
+                            trierContact(4);
+                            break;
+                        case "q":
                             // Fermer le flux de données de l'objet Scanner
                             _scan.close();
                             // Quitter la boucle infinie
@@ -91,21 +99,34 @@ public class App{
     public static void trierContact(int tri) throws IOException{
         try{
             ArrayList<Contact> list = Contact.listerContacts();
-            Collections.sort(list, new Comparator<Contact>() {
-            @Override
-            public int compare(Contact c1, Contact c2) {
-                return c1.getNom().compareTo(c2.getNom());
-            }
-            });
-            if (tri==1){
-                String str = list.toString().replaceAll(",", "\n");
-                System.out.println(str);
+            if (tri == 1 || tri == 2){
+                Collections.sort(list, new Comparator<Contact>() {
+                    @Override
+                    public int compare(Contact c1, Contact c2) {
+                        return c1.getNom().compareTo(c2.getNom());
+                    }
+                });
+                if (tri==1){
+                    String str = list.toString().replaceAll(",", "\n");
+                    System.out.println(str);
+                }
+                else{
+                    Collections.reverse(list);
+                    String str = list.toString().replaceAll(",", "\n");
+                    System.out.println(str);
+                }
             }
             else{
-                Collections.reverse(list);
-                String str = list.toString().replaceAll(",", "\n");
-                System.out.println(str);
+                if (tri == 3){
+                    System.out.println(list);
+                }
+                else{
+                    Collections.reverse(list);
+                    System.out.println(list);
+                }
             }
+        
+            
             
         }catch (IOException exception){
             System.out.println("Problème avec le tri des contacts");
