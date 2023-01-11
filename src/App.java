@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
-import comparator.Comparer;
+import model.Comparer;
 import model.Contact;
 
 public class App{
@@ -138,7 +138,7 @@ public class App{
         }   
     }
 
-
+    
     public static void triMail() throws IOException{
         try{
             ArrayList<Contact> list = Contact.listerContacts();
