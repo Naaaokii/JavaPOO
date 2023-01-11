@@ -1,6 +1,8 @@
-package model;
+package Comparator;
 
 import java.util.Comparator;
+
+import model.Contact;
 
 public class Comparer implements Comparator<Contact> {
     public int compare(Contact c1, Contact c2) {

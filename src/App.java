@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
-import model.Comparer;
+import Comparator.Comparer;
 import model.Contact;
 
 public class App{
