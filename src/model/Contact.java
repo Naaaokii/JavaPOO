@@ -269,21 +269,6 @@ public class Contact implements Comparable<Contact>{
         return contactCherche;
     }
 
-    // méthode pour chercher un contact avec la date de naissance :
-        // 
-        // recuperer la liste de contacts
-        // demander à l'utilisateur de saisir la date de naissance ok
-        // envoyer la demande
-        // parcourir les dates de naissance existantes de la liste de contacts ok
-        // jusqu'à trouver la date correspondante ok
-        // si parcouru entièrement 1 fois et qu'elle n'existe pas ok
-        // afficher un message d'erreur "l'élément que vous recherchez n'existe pas" ok
-        // si trouvé alors le recuperer le contact et n'afficher que celui-la ok
-        // si 2 fois la meme date de naissance ajouter une recherche par nom
-        // si trouvé alors le recuperer et n'afficher que celui-la
-
-
-        // if (tableauContact[0].equals(nom)) 4 dateNaissance
 
     public void modifierContact(String[] ContactModif) {
 		try {	
