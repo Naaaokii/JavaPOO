@@ -270,15 +270,15 @@ public class Contact implements Comparable<Contact>{
     }
 
 
-    public void modifierContact(String[] ContactModif) {
+    public static void modifierContact(ArrayList<Contact> ContactModif) {
 		try {	
 			FileWriter writer = new FileWriter("contacts.csv", true);
 			BufferedReader bufferReader = new BufferedReader(new FileReader("contacts.csv"));	
             String ligne = bufferReader.readLine();	
 			while (ligne != null) {
 				String[] liste = ligne.split(SEPARATEUR);
-				if(ContactModif[0].equals(liste[0]) && ContactModif[1].equals(liste[1])) {
- 
+				if(ContactModif.get(1).equals(liste[0]) && ContactModif.get(2).equals(liste[1])) {
+                    System.out.println("Scarabé du lotus");
 					for(int i = 0 ; i < 5 ; i++) {
                         writer.append(Content[i]);
 						writer.append(';');

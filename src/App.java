@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 
+import comparator.Comparer;
 import model.Contact;
 
 public class App{
@@ -32,24 +33,20 @@ public class App{
                     ajouterContact();
                     break;
                 case "2":
-                    System.out.println("1- Par ordre croissant");
-                    System.out.println("2- Par ordre décroissant");
-                    System.out.println("3- Par ordre Chronologique");
-                    System.out.println("4- Par ordre Chronologique inversé");
+                    System.out.println("1- Tri par Nom");
+                    System.out.println("2- Tri par Mail");
+                    System.out.println("3- Tri par Date de Naissance");
                     System.out.println("q- Quitter");
                     String choixtri = _scan.nextLine();
                     switch(choixtri){
                         case "1":
-                            trierContact(1);
+                            triNom();
                             break;
                         case "2":
-                            trierContact(2);
+                            triMail();
                             break;
                         case "3":
-                            trierContact(3);
-                            break;
-                        case "4":
-                            trierContact(4);
+                            triDate();
                             break;
                         case "q":
                             // Fermer le flux de données de l'objet Scanner
@@ -76,9 +73,7 @@ public class App{
                     // Demander de saisir le nom du contact recherché
                     System.out.println("Saisir le nom :");
 
-                    //ArrayList<Contact> contactEnCours = Contact.chercherContact(_scan.nextLine());
-                    //
-                    //modifierContact(str);
+                    changeContact();
                     break;
                 case "6":
                     break;
@@ -96,6 +91,11 @@ public class App{
     }
 
 
+
+    private static void changeContact() throws IOException {
+       ArrayList<Contact> list = Contact.chercherContact(_scan.nextLine(), 1);
+       Contact.modifierContact(list);
+    }
 
     public static void afficherMenu() {
         // Créer une liste de chaînes de caractères pour stocker les éléments du menu
@@ -115,32 +115,12 @@ public class App{
     }
 
 
-    public static void trierContact(int tri) throws IOException{
+    public static void triNom() throws IOException{
         try{
             ArrayList<Contact> list = Contact.listerContacts();
-            if (tri == 1 || tri == 2){
-                Collections.sort(list);
-                if (tri==1){
-                    String str = list.toString().replaceAll(",", "\n");
-                    System.out.println(str);
-                }
-                else{
-                    Collections.reverse(list);
-                    String str = list.toString().replaceAll(",", "\n");
-                    System.out.println(str);
-                }
-            }
-            else{
-                if (tri == 3){
-                    String str = list.toString().replaceAll(",", "\n");
-                    System.out.println(str);
-                }
-                else{
-                    Collections.reverse(list);
-                    String str = list.toString().replaceAll(",", "\n");
-                    System.out.println(str);
-                }
-            }
+            Collections.sort(list);
+            String str = list.toString().replaceAll(",", "\n").replaceAll(SEPARATEUR, " ");
+            System.out.println(str);
             /*if (tri == 1 || tri == 2){
                 Collections.sort(list, new Comparator<Contact>() {
                     @Override
@@ -151,8 +131,37 @@ public class App{
             */
         }catch (IOException exception){
             System.out.println("Problème avec le tri des contacts");
-        }
-            
+        }   
+    }
+
+
+    public static void triMail() throws IOException{
+        try{
+            ArrayList<Contact> list = Contact.listerContacts();
+            Collections.sort(list, new Comparator<Contact>() {
+                @Override
+                public int compare(Contact c1, Contact c2) {
+                    return c1.getMail().compareTo(c2.getMail());
+                }
+            });
+            String str = list.toString().replaceAll(",", "\n").replaceAll(SEPARATEUR, " ");
+            System.out.println(str);
+        }catch (IOException exception){
+            System.out.println("Problème avec le tri des contacts");
+        }   
+    }
+
+
+    public static void triDate() throws IOException{
+        try{
+            ArrayList<Contact> list = Contact.listerContacts();
+            Comparer comparer = new Comparer();
+            Collections.sort(list, comparer);
+            String str = list.toString().replaceAll(",", "\n").replaceAll(SEPARATEUR, " ");
+            System.out.println(str);
+        }catch (IOException exception){
+            System.out.println("Problème avec le tri des contacts");
+        }   
     }
 
 
