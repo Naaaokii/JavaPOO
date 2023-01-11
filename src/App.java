@@ -107,9 +107,6 @@ public class App{
             ArrayList<Contact> list = Contact.listerContacts();
             if (tri == 1 || tri == 2){
                 Collections.sort(list);
-                for (Contact contact : list) {
-                System.out.println(contact.getNom());
-                }
                 if (tri==1){
                     String str = list.toString().replaceAll(",", "\n");
                     System.out.println(str);
@@ -205,27 +202,6 @@ public class App{
         } catch (IOException exception) {
             // Si une erreur se produit, afficher un message d'erreur
             System.out.println("Erreur d'enregistrement");
-        }
-    }
-
-
-
-
-    // Méthode qui affiche la liste des contacts
-    private static void listerContact() {
-        // Essayer de récupérer la liste des contacts
-        try {
-            // Appeler la méthode "lister" de la classe Contact qui retourne une ArrayList d'objets Contact
-            ArrayList<Contact> listeContact = Contact.listerContacts();
-
-            // Pour chaque objet Contact de la liste
-            for (Contact contact : listeContact) {
-                // Afficher le prénom et le nom de l'objet Contact
-                System.out.println(contact.getNom() + " " + contact.getPrenom());
-            }
-        } catch (IOException exception) {
-            // Si une erreur se produit avec le fichier, afficher un message d'erreur
-            System.out.println("Erreur avec le fichier");
         }
     }
 }

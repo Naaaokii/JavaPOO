@@ -292,6 +292,10 @@ public class Contact implements Comparable<Contact>{
 
     @Override
     public int compareTo(Contact c) {
-        return this.getNom().compareTo(c.getNom());
+        if (this.getNom().compareTo(c.getNom()) == 0){
+            return this.getPrenom().compareTo(c.getPrenom());
+        }else{
+            return this.getNom().compareTo(c.getNom());
+        }
     }
 }
