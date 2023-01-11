@@ -6,7 +6,7 @@ import java.util.Comparator;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
-import Comparator.Comparer;
+import comparator.Comparer;
 import model.Contact;
 
 public class App{
@@ -61,7 +61,7 @@ public class App{
                     System.out.println("Saisir le nom :");
 
                     // Appeler la méthode "chercherContact" de l'objet contact
-                    Contact.chercherContact(_scan.nextLine(), 1);
+                    Contact.chercherContact(_scan.nextLine(),1);
                     break;
                 case "4":
                     // Demander de saisir le nom du contact recherché
@@ -103,14 +103,15 @@ public class App{
     public static void afficherMenu() {
         // Créer une liste de chaînes de caractères pour stocker les éléments du menu
         ArrayList<String> menus = new ArrayList<>();
-        menus.add("-- MENU --");
-        menus.add("1- Ajouter un contact");
-        menus.add("2- Lister les contacts");
-        menus.add("3- Chercher un contact avec le nom");
-        menus.add("4- Chercher un contact avec la date de naissance"); 
-        menus.add("5- Modifier un contact"); // A faire
-        menus.add("6- Supprimer un contact"); 
-        menus.add("q- Quitter");
+        menus.add("----------------------- MENU -----------------------");
+        menus.add("| 1- Ajouter un contact                            |");
+        menus.add("| 2- Lister les contacts                           |");
+        menus.add("| 3- Chercher un contact avec le nom               |");
+        menus.add("| 4- Chercher un contact avec la date de naissance |"); 
+        menus.add("| 5- Modifier un contact                           |"); // A faire
+        menus.add("| 6- Supprimer un contact                          |"); 
+        menus.add("| q- Quitter                                       |");
+        menus.add("----------------------------------------------------");
         // Pour chaque élément de la liste, afficher la chaîne de caractères
         for (String s : menus) {
             System.out.println(s);
