@@ -104,7 +104,7 @@ public class App{
         menus.add("1- Ajouter un contact");
         menus.add("2- Lister les contacts");
         menus.add("3- Chercher un contact avec le nom");
-        menus.add("4- Chercher un contact avec la date de naissance"); // A faire
+        menus.add("4- Chercher un contact avec la date de naissance"); 
         menus.add("5- Modifier un contact"); // A faire
         menus.add("6- Supprimer un contact"); // A faire
         menus.add("q- Quitter");
