@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
@@ -108,7 +109,7 @@ public class App{
         menus.add("3- Chercher un contact avec le nom");
         menus.add("4- Chercher un contact avec la date de naissance"); 
         menus.add("5- Modifier un contact"); // A faire
-        menus.add("6- Supprimer un contact"); // A faire
+        menus.add("6- Supprimer un contact"); 
         menus.add("q- Quitter");
         // Pour chaque élément de la liste, afficher la chaîne de caractères
         for (String s : menus) {
