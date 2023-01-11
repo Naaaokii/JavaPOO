@@ -66,6 +66,11 @@ public class App{
                     Contact.chercherContact(_scan.nextLine(), 1);
                     break;
                 case "4":
+                    // Demander de saisir le nom du contact recherché
+                    System.out.println("Saisir la date :");
+
+                    // Appeler la méthode "chercherContact" de l'objet contact
+                    Contact.chercherContact(_scan.nextLine(), 2);
                     break;
                 case "5":
                     // Demander de saisir le nom du contact recherché
