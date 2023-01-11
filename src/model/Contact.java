@@ -355,12 +355,4 @@ public class Contact implements Comparable<Contact>{
             return this.getNom().compareTo(c.getNom());
         }
     }
-
-    public static ArrayList<Contact> lister() {
-        return null;
-    }
-
-    public String getEmail() {
-        return null;
-    }
 }
