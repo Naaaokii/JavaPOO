@@ -12,6 +12,8 @@ public class App{
     // Créer un objet Scanner qui permettra de lire les entrées de l'utilisateur
     private static Scanner _scan = new Scanner(System.in);
 
+    public static final String SEPARATEUR = ";";
+
     // Déclarer une méthode nommée "main" qui prend en argument une chaîne de caractères et qui peut lever une Exception
     public static void main(String[] args) throws Exception {
         
@@ -61,11 +63,17 @@ public class App{
                     System.out.println("Saisir le nom :");
 
                     // Appeler la méthode "chercherContact" de l'objet contact
-                    Contact.chercherContact(_scan.nextLine());
+                    Contact.chercherContact(_scan.nextLine(), 1);
                     break;
                 case "4":
                     break;
                 case "5":
+                    // Demander de saisir le nom du contact recherché
+                    System.out.println("Saisir le nom :");
+
+                    //ArrayList<Contact> contactEnCours = Contact.chercherContact(_scan.nextLine());
+                    //
+                    //modifierContact(str);
                     break;
                 case "6":
                     break;
