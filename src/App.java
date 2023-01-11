@@ -106,12 +106,10 @@ public class App{
         try{
             ArrayList<Contact> list = Contact.listerContacts();
             if (tri == 1 || tri == 2){
-                Collections.sort(list, new Comparator<Contact>() {
-                    @Override
-                    public int compare(Contact c1, Contact c2) {
-                        return c1.getNom().compareTo(c2.getNom());
-                    }
-                });
+                Collections.sort(list);
+                for (Contact contact : list) {
+                System.out.println(contact.getNom());
+                }
                 if (tri==1){
                     String str = list.toString().replaceAll(",", "\n");
                     System.out.println(str);
@@ -124,16 +122,23 @@ public class App{
             }
             else{
                 if (tri == 3){
-                    System.out.println(list);
+                    String str = list.toString().replaceAll(",", "\n");
+                    System.out.println(str);
                 }
                 else{
                     Collections.reverse(list);
-                    System.out.println(list);
+                    String str = list.toString().replaceAll(",", "\n");
+                    System.out.println(str);
                 }
             }
-        
-            
-            
+            /*if (tri == 1 || tri == 2){
+                Collections.sort(list, new Comparator<Contact>() {
+                    @Override
+                    public int compare(Contact c1, Contact c2) {
+                        return c1.getNom().compareTo(c2.getNom());
+                    }
+                });
+            */
         }catch (IOException exception){
             System.out.println("Problème avec le tri des contacts");
         }

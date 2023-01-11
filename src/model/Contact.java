@@ -22,7 +22,7 @@ import java.util.Collections;
 
 
 
-public class Contact implements Comparable{
+public class Contact implements Comparable<Contact>{
     
     // Déclarer une constante publique et statique nommée "SEPARATEUR" qui contient un séparateur de chaîne de caractères
     public static final String SEPARATEUR = ";"; //";" est le séparateur utilisé dans le fichier csv
@@ -291,8 +291,7 @@ public class Contact implements Comparable{
     }
 
     @Override
-    public int compareTo(Object o) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int compareTo(Contact c) {
+        return this.getNom().compareTo(c.getNom());
     }
 }
