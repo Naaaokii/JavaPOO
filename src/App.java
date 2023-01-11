@@ -2,8 +2,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 import model.Contact;
 
@@ -81,6 +81,8 @@ public class App{
                     //modifierContact(str);
                     break;
                 case "6":
+                    System.out.println("Saisir le mail :");
+                    contactDelete(_scan.nextLine());
                     break;
                 case "q":
                     // Fermer le flux de données de l'objet Scanner
@@ -113,6 +115,8 @@ public class App{
             System.out.println(s);
         }
     }
+
+    // 
 
 
     public static void trierContact(int tri) throws IOException{
@@ -217,4 +221,14 @@ public class App{
             System.out.println("Erreur d'enregistrement");
         }
     }
+
+    private static void contactDelete(String contactSupprimer) throws IOException{
+        ArrayList<Contact> list = Contact.listerContacts();
+        Predicate<Contact> condition = contact -> contact.getMail().startsWith(contactSupprimer);
+
+        list.removeIf(condition);
+        Contact.refreshlist(list);
+        System.out.println(list);
+    }
+
 }
