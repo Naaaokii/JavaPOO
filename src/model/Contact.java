@@ -293,7 +293,26 @@ public class Contact implements Comparable<Contact>{
 		}
 	}
 
+    public static void refreshlist(ArrayList<Contact> list) throws IOException{
+        PrintWriter printwriter = new PrintWriter(new BufferedWriter(new FileWriter("contacts.csv", false)));
+        try{
+            
+            for (Contact contact : list) {
+                printwriter.println(contact.toString());
+            }
+        }finally{
+            printwriter.close();
+        }
+    }
 
+    // afficher menu
+    // si click sur supprimer un contact
+    // demander à l'utilisateur de saisir le mail
+    // recuperer la liste
+    // parcourir les mails de la liste jusqu'a trouver le contact
+    // afficher les informations du contact contenant le mail saisi par l'utilisateur
+    // si click sur "d" afficher un message "Voulez-vous supprimer ce contact ?"
+    // si oui remove les infos enregistrées, sinon ne rien faire
 
 
     @Override
@@ -335,5 +354,13 @@ public class Contact implements Comparable<Contact>{
         }else{
             return this.getNom().compareTo(c.getNom());
         }
+    }
+
+    public static ArrayList<Contact> lister() {
+        return null;
+    }
+
+    public String getEmail() {
+        return null;
     }
 }
