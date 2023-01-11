@@ -30,8 +30,23 @@ public class App{
                     ajouterContact();
                     break;
                 case "2":
-                    // Appeler la méthode "listerContact"
-                    trierContact();
+                    System.out.println("1- Par ordre croissant");
+                    System.out.println("2- Par ordre décroissant");
+                    System.out.println("a- Annuler");
+                    String choixtri = _scan.nextLine();
+                    switch(choixtri){
+                        case "1":
+                            trierContact(1);
+                            break;
+                        case "2":
+                            trierContact(2);
+                            break;
+                        case "a":
+                            // Fermer le flux de données de l'objet Scanner
+                            _scan.close();
+                            // Quitter la boucle infinie
+                            return;
+                    }
                     break;
                 case "3":
                     // Demander de saisir le nom du contact recherché
@@ -73,7 +88,8 @@ public class App{
     }
 
 
-    public static void trierContact() throws IOException{
+    public static void trierContact(int tri) throws IOException{
+        try{
             ArrayList<Contact> list = Contact.listerContacts();
             Collections.sort(list, new Comparator<Contact>() {
             @Override
@@ -81,8 +97,20 @@ public class App{
                 return c1.getNom().compareTo(c2.getNom());
             }
             });
-            String str = list.toString().replaceAll(",", "\n");
-            System.out.println(str);
+            if (tri==1){
+                String str = list.toString().replaceAll(",", "\n");
+                System.out.println(str);
+            }
+            else{
+                Collections.reverse(list);
+                String str = list.toString().replaceAll(",", "\n");
+                System.out.println(str);
+            }
+            
+        }catch (IOException exception){
+            System.out.println("Problème avec le tri des contacts");
+        }
+            
     }
 
 
