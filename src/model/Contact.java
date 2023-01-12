@@ -3,22 +3,16 @@ package model;
 // Importer des classes nécessaires pour la lecture et l'écriture de fichiers, la gestion des dates et des expressions régulières
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Date;
 import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.lang.model.element.Element;
-
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.Collections;
 
 
 
@@ -26,8 +20,6 @@ public class Contact implements Comparable<Contact>{
     
     // Déclarer une constante publique et statique nommée "SEPARATEUR" qui contient un séparateur de chaîne de caractères
     public static final String SEPARATEUR = ";"; //";" est le séparateur utilisé dans le fichier csv
-
-    private static final CharSequence[] Content = null;
 
     // Déclarer des attributs privés de la classe
     private String nom;
@@ -267,29 +259,6 @@ public class Contact implements Comparable<Contact>{
         return contactCherche;
     }
 
-
-    public static void modifierContact(ArrayList<Contact> ContactModif) {
-		try {	
-			FileWriter writer = new FileWriter("contacts.csv", true);
-			BufferedReader bufferReader = new BufferedReader(new FileReader("contacts.csv"));	
-            String ligne = bufferReader.readLine();	
-			while (ligne != null) {
-				String[] liste = ligne.split(SEPARATEUR);
-				if(ContactModif.get(1).equals(liste[0]) && ContactModif.get(2).equals(liste[1])) {
-                    System.out.println("Scarabé du lotus");
-					for(int i = 0 ; i < 5 ; i++) {
-                        writer.append(Content[i]);
-						writer.append(';');
-					}
-                    bufferReader.close();
-					writer.flush();
-					writer.close();
-				}
-			}
-		}
-		catch (IOException ex) {
-		}
-	}
 
     public static void refreshlist(ArrayList<Contact> list) throws Exception{
         PrintWriter printwriter = new PrintWriter(new BufferedWriter(new FileWriter("contacts.csv", false)));
