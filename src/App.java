@@ -237,11 +237,10 @@ public class App{
                 if (contactList[2].equals(contactAModifier)){
                     String[] tableauContactRecherche = contactList;
                     list.add(ajouterContactModif(tableauContactRecherche));
-                    list.remove(contact);
-                    System.out.println(list);
                 }
             }
             Contact.refreshlist(list);
+            contactDelete(contactAModifier);
             System.out.println("Le contact a bien été modifié");
         } catch (IOException exception) {
             System.out.println("Erreur de modification du contact - IO");
