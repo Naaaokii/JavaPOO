@@ -228,8 +228,8 @@ public class App{
                 String[] contactList = str.split(SEPARATEUR);
                 if (contactList[2].equals(contactAModifier)){
                     String[] tableauContactRecherche = contactList;
-                    list.add(ajouterContactModif(tableauContactRecherche));
                     contactDelete(contactAModifier);
+                    list.add(ajouterContactModif(tableauContactRecherche));
                 }
             }
             Contact.refreshlist(list);
@@ -243,11 +243,6 @@ public class App{
 
 
     private static Contact ajouterContactModif(String[] contactAModifer) throws ParseException{
-        System.out.println(contactAModifer[0] + "\n" +
-        contactAModifer[1] + "\n" +
-        contactAModifer[2] + "\n" +
-        contactAModifer[3] + "\n" +
-        contactAModifer[4] + "\n");
         // Créer un objet Contact
         Contact contact = new Contact();
         
@@ -275,10 +270,16 @@ public class App{
         do {
             // Essayer de saisir le numéro de téléphone et appeler la méthode "setTelephone" de l'objet Contact
             try {
-                System.out.println("Saisir le téléphone :");
-                contact.setTelephone(_scan.nextLine());
+                System.out.println("Saisir le numéro de téléphone :");
+                System.out.println(contactAModifer[3]);
+                String telephone = _scan.nextLine();
+                if(telephone == ""){
+                    contact.setTelephone(contactAModifer[3]);
+                }else{
+                    contact.setTelephone(telephone);
+                }
                 break;
-            } catch (ParseException exception) {
+            } catch (Exception exception) {
                 // Si une erreur se produit, afficher le message d'erreur
                 System.out.println(exception.getMessage());
             }
@@ -288,7 +289,13 @@ public class App{
             // Essayer de saisir l'adresse mail et appeler la méthode "setMail" de l'objet Contact
             try {
                 System.out.println("Saisir le mail :");
-                contact.setMail(_scan.nextLine());
+                System.out.println(contactAModifer[2]);
+                String mail = _scan.nextLine();
+                if(mail == ""){
+                    contact.setMail(contactAModifer[2]);
+                }else{
+                    contact.setMail(mail);
+                }
                 break;
             } catch (ParseException exception) {
                 // Si une erreur se produit, afficher le message d'erreur
@@ -300,7 +307,13 @@ public class App{
             // Essayer de saisir la date de naissance et appeler la méthode "setDateNaissance" de l'objet Contact
             try {
                 System.out.println("Saisir la date de naissance :");
-                contact.setDateNaissance(_scan.nextLine());
+                System.out.println(contactAModifer[4]);
+                String date = _scan.nextLine();
+                if(date == ""){
+                    contact.setDateNaissance(contactAModifer[4]);
+                }else{
+                    contact.setDateNaissance(date);
+                }
                 break;
             } catch (ParseException exception) {
                 // Si une erreur se produit, afficher le message d'erreur
