@@ -1,11 +1,11 @@
 import java.io.IOException;
+import java.io.PrintStream;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.function.Predicate;
-
 import comparator.Comparer;
 import model.Contact;
 
@@ -120,14 +120,6 @@ public class App{
             Collections.sort(list);
             String str = list.toString().replaceAll(",", "\n").replaceAll(SEPARATEUR, " ");
             System.out.println(str);
-            /*if (tri == 1 || tri == 2){
-                Collections.sort(list, new Comparator<Contact>() {
-                    @Override
-                    public int compare(Contact c1, Contact c2) {
-                        return c1.getNom().compareTo(c2.getNom());
-                    }
-                });
-            */
         }catch (IOException exception){
             System.out.println("Problème avec le tri par nom");
         }   
@@ -237,21 +229,25 @@ public class App{
                 if (contactList[2].equals(contactAModifier)){
                     String[] tableauContactRecherche = contactList;
                     list.add(ajouterContactModif(tableauContactRecherche));
+                    contactDelete(contactAModifier);
                 }
             }
             Contact.refreshlist(list);
-            contactDelete(contactAModifier);
             System.out.println("Le contact a bien été modifié");
         } catch (IOException exception) {
             System.out.println("Erreur de modification du contact - IO");
         }catch (Exception exception) {
-            System.out.println("Erreur de modification du contact - not IO");
+            System.out.println("");
         }
     }
 
 
     private static Contact ajouterContactModif(String[] contactAModifer) throws ParseException{
-        
+        System.out.println(contactAModifer[0] + "\n" +
+        contactAModifer[1] + "\n" +
+        contactAModifer[2] + "\n" +
+        contactAModifer[3] + "\n" +
+        contactAModifer[4] + "\n");
         // Créer un objet Contact
         Contact contact = new Contact();
         
@@ -270,9 +266,9 @@ public class App{
         System.out.println(contactAModifer[1]);
         String prenom = _scan.nextLine();
         if(prenom == ""){
-            contact.setNom(contactAModifer[1]);
+            contact.setPrenom(contactAModifer[1]);
         }else{
-            contact.setNom(prenom);
+            contact.setPrenom(prenom);
         }
 
         // Boucle "infinie"
@@ -329,7 +325,6 @@ public class App{
         try {
             ArrayList<Contact> list = Contact.listerContacts();
             Predicate<Contact> condition = contact -> contact.getMail().startsWith(contactSupprimer);
-
             list.removeIf(condition);
             Contact.refreshlist(list);
             System.out.println(list);

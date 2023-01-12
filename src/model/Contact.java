@@ -134,14 +134,7 @@ public class Contact implements Comparable<Contact>{
     }
 
 
-
-    
-
-    
-
-    // Déclarer une méthode statique nommée "listerContacts" qui renvoie une ArrayList de Contact et qui peut lever une IOException
     public static ArrayList<Contact> listerContacts() throws IOException {
-        
         // Créer une ArrayList de Contact
         ArrayList<Contact> listeContact = new ArrayList<>();
         
@@ -160,7 +153,6 @@ public class Contact implements Comparable<Contact>{
                 
                 // Créer un objet Contact
                 Contact contact = new Contact();
-                
                 // Définir les différentes informations du contact avec les valeurs du tableau
                 contact.setNom(tableauContact[0]);
                 contact.setPrenom(tableauContact[1]);
@@ -170,7 +162,6 @@ public class Contact implements Comparable<Contact>{
                 
                 // Ajouter l'objet Contact à la liste
                 listeContact.add(contact);                
-                
                 // Lire la ligne suivante du fichier
                 ligne = lectureFichier.readLine();
             }
