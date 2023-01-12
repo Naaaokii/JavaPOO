@@ -250,8 +250,6 @@ public class Contact implements Comparable<Contact>{
                         + contact.getDateNaissance());
                     }
                 }
-                
-               
                 // Lire la ligne suivante du fichier
                 ligne = lectureFichier.readLine();
             }
@@ -265,7 +263,7 @@ public class Contact implements Comparable<Contact>{
             // Fermer le flux de données dans tous les cas
             lectureFichier.close();
         }
-        // Renvoyer la liste de contacts
+        // Renvoyer le contact
         return contactCherche;
     }
 
@@ -293,13 +291,14 @@ public class Contact implements Comparable<Contact>{
 		}
 	}
 
-    public static void refreshlist(ArrayList<Contact> list) throws IOException{
+    public static void refreshlist(ArrayList<Contact> list) throws Exception{
         PrintWriter printwriter = new PrintWriter(new BufferedWriter(new FileWriter("contacts.csv", false)));
         try{
-            
             for (Contact contact : list) {
                 printwriter.println(contact.toString());
             }
+        }catch (Exception exception){
+            System.out.println("Problème pour refresh le csv");
         }finally{
             printwriter.close();
         }
