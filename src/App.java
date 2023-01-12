@@ -2,29 +2,32 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
 import model.Contact;
 
-public class App{
-    
+public class App {
+
     // Créer un objet Scanner qui permettra de lire les entrées de l'utilisateur
     private static Scanner _scan = new Scanner(System.in);
 
     public static final String SEPARATEUR = ";";
 
-    // Déclarer une méthode nommée "main" qui prend en argument une chaîne de caractères et qui peut lever une Exception
+    // Déclarer une méthode nommée "main" qui prend en argument une chaîne de
+    // caractères et qui peut lever une Exception
     public static void main(String[] args) throws Exception {
-        
+
         // Afficher le menu
         afficherMenu();
-        
+
         // Boucle tant que
         while (true) {
             // Lire la ligne entrée par l'utilisateur
             String choix = _scan.nextLine();
-            
+
             // Selon la valeur de "choix"
             switch (choix) {
                 case "1":
@@ -38,7 +41,7 @@ public class App{
                     System.out.println("4- Par ordre Chronologique inversé");
                     System.out.println("q- Quitter");
                     String choixtri = _scan.nextLine();
-                    switch(choixtri){
+                    switch (choixtri) {
                         case "1":
                             trierContact(1);
                             break;
@@ -50,6 +53,9 @@ public class App{
                             break;
                         case "4":
                             trierContact(4);
+                            break;
+                        case "7":
+                            trierContact(7);
                             break;
                         case "q":
                             // Fermer le flux de données de l'objet Scanner
@@ -76,13 +82,19 @@ public class App{
                     // Demander de saisir le nom du contact recherché
                     System.out.println("Saisir le nom :");
 
-                    //ArrayList<Contact> contactEnCours = Contact.chercherContact(_scan.nextLine());
+                    // ArrayList<Contact> contactEnCours =
+                    // Contact.chercherContact(_scan.nextLine());
                     //
-                    //modifierContact(str);
+                    // modifierContact(str);
                     break;
                 case "6":
                     System.out.println("Saisir le mail :");
                     contactDelete(_scan.nextLine());
+                    break;
+                case "7":
+                    System.out.println("Saisir le prénom :");
+                    String nom = _scan.nextLine();
+                    searchContactByPrenom(nom);
                     break;
                 case "q":
                     // Fermer le flux de données de l'objet Scanner
@@ -97,8 +109,6 @@ public class App{
         }
     }
 
-
-
     public static void afficherMenu() {
         // Créer une liste de chaînes de caractères pour stocker les éléments du menu
         ArrayList<String> menus = new ArrayList<>();
@@ -106,9 +116,10 @@ public class App{
         menus.add("1- Ajouter un contact");
         menus.add("2- Lister les contacts");
         menus.add("3- Chercher un contact avec le nom");
-        menus.add("4- Chercher un contact avec la date de naissance"); 
-        menus.add("5- Modifier un contact"); // A faire
-        menus.add("6- Supprimer un contact"); // A faire
+        menus.add("4- Chercher un contact avec la date de naissance");
+        menus.add("5- Modifier un contact");
+        menus.add("6- Supprimer un contact");
+        menus.add("7- Rechercher un contact par prénom");
         menus.add("q- Quitter");
         // Pour chaque élément de la liste, afficher la chaîne de caractères
         for (String s : menus) {
@@ -116,67 +127,66 @@ public class App{
         }
     }
 
-    // 
+    //
 
-
-    public static void trierContact(int tri) throws IOException{
-        try{
+    public static void trierContact(int tri) throws IOException {
+        try {
             ArrayList<Contact> list = Contact.listerContacts();
-            if (tri == 1 || tri == 2){
+            if (tri == 1 || tri == 2) {
                 Collections.sort(list);
-                if (tri==1){
+                if (tri == 1) {
+                    String str = list.toString().replaceAll(",", "\n");
+                    System.out.println(str);
+                } else {
+                    Collections.reverse(list);
                     String str = list.toString().replaceAll(",", "\n");
                     System.out.println(str);
                 }
-                else{
+            } else {
+                if (tri == 3) {
+                    String str = list.toString().replaceAll(",", "\n");
+                    System.out.println(str);
+                } else {
                     Collections.reverse(list);
                     String str = list.toString().replaceAll(",", "\n");
                     System.out.println(str);
                 }
             }
-            else{
-                if (tri == 3){
-                    String str = list.toString().replaceAll(",", "\n");
-                    System.out.println(str);
-                }
-                else{
-                    Collections.reverse(list);
-                    String str = list.toString().replaceAll(",", "\n");
-                    System.out.println(str);
-                }
-            }
-            /*if (tri == 1 || tri == 2){
-                Collections.sort(list, new Comparator<Contact>() {
-                    @Override
-                    public int compare(Contact c1, Contact c2) {
-                        return c1.getNom().compareTo(c2.getNom());
-                    }
-                });
-            */
-        }catch (IOException exception){
+            /*
+             * if (tri == 1 || tri == 2){
+             * Collections.sort(list, new Comparator<Contact>() {
+             * 
+             * @Override
+             * public int compare(Contact c1, Contact c2) {
+             * return c1.getNom().compareTo(c2.getNom());
+             * }
+             * });
+             */
+        } catch (IOException exception) {
             System.out.println("Problème avec le tri des contacts");
         }
-            
-    }
 
+    }
 
     // Méthode qui permet d'ajouter un contact
     private static void ajouterContact() {
-        
+
         // Créer un objet Contact
         Contact contact = new Contact();
-        
+
         // Demander de saisir le nom et appeler la méthode "setNom" de l'objet Contact
         System.out.println("Saisir le nom :");
         contact.setNom(_scan.nextLine());
-        
-        // Demander de saisir le prénom et appeler la méthode "setPrenom" de l'objet Contact
+
+        // Demander de saisir le prénom et appeler la méthode "setPrenom" de l'objet
+        // Contact
         System.out.println("Saisir le prénom :");
         contact.setPrenom(_scan.nextLine());
 
         // Boucle "infinie"
         do {
-            // Essayer de saisir le numéro de téléphone et appeler la méthode "setTelephone" de l'objet Contact
+            // Essayer de saisir le numéro de téléphone et appeler la méthode "setTelephone"
+            // de l'objet Contact
             try {
                 System.out.println("Saisir le téléphone :");
                 contact.setTelephone(_scan.nextLine());
@@ -188,7 +198,8 @@ public class App{
         } while (true); // boucler tant que la valeur de "true" est vraie
 
         do {
-            // Essayer de saisir l'adresse mail et appeler la méthode "setMail" de l'objet Contact
+            // Essayer de saisir l'adresse mail et appeler la méthode "setMail" de l'objet
+            // Contact
             try {
                 System.out.println("Saisir le mail :");
                 contact.setMail(_scan.nextLine());
@@ -200,7 +211,8 @@ public class App{
         } while (true); // boucler tant que la valeur de "true" est vraie
 
         do {
-            // Essayer de saisir la date de naissance et appeler la méthode "setDateNaissance" de l'objet Contact
+            // Essayer de saisir la date de naissance et appeler la méthode
+            // "setDateNaissance" de l'objet Contact
             try {
                 System.out.println("Saisir la date de naissance :");
                 contact.setDateNaissance(_scan.nextLine());
@@ -215,20 +227,30 @@ public class App{
         try {
             contact.sauvegarderContact();
             // Si l'enregistrement a réussi, afficher un message de confirmation
-            System.out.println("Le contact à bien été enregistré");
+            System.out.println("Le contact a bien été enregistré");
         } catch (IOException exception) {
             // Si une erreur se produit, afficher un message d'erreur
             System.out.println("Erreur d'enregistrement");
         }
     }
 
-    private static void contactDelete(String contactSupprimer) throws IOException{
+    private static void contactDelete(String contactSupprimer) throws IOException {
         ArrayList<Contact> list = Contact.listerContacts();
         Predicate<Contact> condition = contact -> contact.getMail().startsWith(contactSupprimer);
 
         list.removeIf(condition);
         Contact.refreshlist(list);
         System.out.println(list);
+    }
+
+    private static void searchContactByPrenom(String nom) throws IOException {
+        ArrayList<Contact> list = Contact.listerContacts();
+
+        List<Contact> contactFind = list.stream()
+                .filter((contact) -> contact.getPrenom().startsWith(nom))
+                .toList();
+
+        System.out.println(contactFind);
     }
 
 }
