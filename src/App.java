@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
 import java.util.function.Predicate;
+
 import comparator.Comparer;
 import model.Contact;
 
@@ -15,6 +16,25 @@ public class App{
     private static Scanner _scan = new Scanner(System.in);
 
     public static final String SEPARATEUR = ";";
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+
+    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
+    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
+    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
+    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
+    public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
+    public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
+    public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
+    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
     // Déclarer une méthode nommée "main" qui prend en argument une chaîne de caractères et qui peut lever une Exception
     public static void main(String[] args) throws Exception {
@@ -96,7 +116,7 @@ public class App{
     public static void afficherMenu() {
         // Créer une liste de chaînes de caractères pour stocker les éléments du menu
         ArrayList<String> menus = new ArrayList<>();
-        menus.add("----------------------- MENU -----------------------");
+        menus.add(ANSI_PURPLE_BACKGROUND + "----------------------- MENU -----------------------");
         menus.add("| 1- Ajouter un contact                            |");
         menus.add("| 2- Lister les contacts                           |");
         menus.add("| 3- Chercher un contact avec le nom               |");
@@ -105,6 +125,7 @@ public class App{
         menus.add("| 6- Supprimer un contact                          |"); 
         menus.add("| q- Quitter                                       |");
         menus.add("----------------------------------------------------");
+        menus.add(ANSI_RESET);
         // Pour chaque élément de la liste, afficher la chaîne de caractères
         for (String s : menus) {
             System.out.println(s);
@@ -340,7 +361,6 @@ public class App{
             Predicate<Contact> condition = contact -> contact.getMail().startsWith(contactSupprimer);
             list.removeIf(condition);
             Contact.refreshlist(list);
-            System.out.println(list);
         } catch (Exception e) {
             System.out.println("Erreur de supression du contact");
         }
