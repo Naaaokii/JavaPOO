@@ -28,30 +28,56 @@ public class Contact implements Comparable<Contact>{
     private String mail;
     private Date dateNaissance;
 
-    // Déclarer des "getters" et des "setters" pour chaque attribut de la classe
+    /**
+     * Permet de récupérer le nom d'un contact
+     * @return le nom du contact
+     */
     public String getNom() {
         return nom;
     }
 
+
+    /**
+     * Permet d'assigner le paramètre (en majuscule) à l'attribut nom (str)
+     * @param nom: Un nom (str)
+     * Ne renvoie rien
+     */
     public void setNom(String nom) {
         // Mettre le nom en majuscule avant de l'assigner à l'attribut "nom"
         this.nom = nom.toUpperCase(); 
     }
 
+    /**
+     * Permet de récupérer le prénom d'un contact
+     * @return le prénom du contact
+     */
     public String getPrenom() {
         return prenom;
     }
 
+    /**
+     * Permet d'assigner le paramètre (première lettre en majuscule) à l'attribut prenom (str)
+     * @param prenom: Un prenom (str)
+     * Ne renvoie rien
+     */
     public void setPrenom(String prenom) {
         // Mettre la première lettre du prénom en majuscule avant de l'assigner à l'attribut "prenom"
         this.prenom = prenom.replaceFirst(".",(prenom.charAt(0)+"").toUpperCase());
     }
 
+    /**
+     * Permet de récupérer le numéro de téléphone d'un contact
+     * @return le numéro de téléphone du contact
+     */
     public String getTelephone() {
         return telephone;
     }
 
-    // Déclarer une méthode nommée "setTelephone" qui prend en argument une chaîne de caractères et qui peut lever une ParseException
+    /**
+     * Permet d'assigner le paramètre à l'attribut telephone (str)
+     * @param telephone: Un telephone (str)
+     * Ne renvoie rien
+     */
     public void setTelephone(String telephone) throws ParseException { //exception d'analyse
     
     // Vérifier le format du numéro de téléphone
@@ -72,13 +98,21 @@ public class Contact implements Comparable<Contact>{
     }
 }
 
+    /**
+     * Permet de récupérer le mail d'un contact
+     * @return le mail du contact
+     */
     public String getMail() {
         return mail;
     }
 
 
 
-    // Déclarer une méthode nommée "setMail" qui prend en argument une chaîne de caractères et qui peut lever une ParseException
+    /**
+     * Permet d'assigner le paramètre  à l'attribut mail (str)
+     * @param mail: Un mail (str)
+     * Ne renvoie rien
+     */
     public void setMail(String mail) throws ParseException {
         
         // Vérifier le format du mail en utilisant une expression régulière
@@ -99,12 +133,19 @@ public class Contact implements Comparable<Contact>{
     }
 
 
-
+    /**
+     * Permet de récupérer la date de naissance d'un contact
+     * @return la date de naissance du contact
+     */
     public Date getDateNaissance() {
         return dateNaissance;
     }
 
-    // Déclarer une méthode nommée "setDateNaissance" qui prend en argument une chaîne de caractères et qui peut lever une ParseException
+    /**
+     * Permet d'assigner le paramètre à l'attribut DateNaissance (str)
+     * @param dateNaissance: Une date le naissance (str)
+     * Ne renvoie rien
+     */
     public void setDateNaissance(String dateNaissance) throws ParseException {
         
         // Créer un format de date (jour/mois/année)
@@ -119,6 +160,11 @@ public class Contact implements Comparable<Contact>{
 
 
     // Déclarer une méthode nommée "sauvegarderContact" qui peut lever une IOException
+    /**
+     * Permet d'inscrire les contacts dans le fichier csv
+     * @throws IOException
+     * Ne renvoie rien
+     */
     public void sauvegarderContact() throws IOException { //exception fichier 
         
         // Créer un objet PrintWriter qui écrira dans un fichier nommé "contacts.csv" en utilisant l'option "true" pour ajouter du contenu à la fin du fichier
@@ -134,6 +180,11 @@ public class Contact implements Comparable<Contact>{
     }
 
 
+    /**
+     * Permet de lister tous les contacts du fichier csv
+     * @return La liste des contacts
+     * @throws IOException
+     */
     public static ArrayList<Contact> listerContacts() throws IOException {
         // Créer une ArrayList de Contact
         ArrayList<Contact> listeContact = new ArrayList<>();
@@ -182,6 +233,13 @@ public class Contact implements Comparable<Contact>{
 
 
 
+    /**
+     * Permet de chercher un contact avec le nom ou la date de naissance
+     * @param nom: Le nom du contact recherché (String)
+     * @param x: Un entier (1 pour le nom et sinon pour la date)
+     * @return Un contact
+     * @throws IOException
+     */
     public static ArrayList<Contact> chercherContact(String nom, int x) throws IOException { 
         // Mettre le nom en majuscule
         nom = nom.toUpperCase();
@@ -251,6 +309,12 @@ public class Contact implements Comparable<Contact>{
     }
 
 
+    /**
+     * Permet de réécrire à l'intèrieur du fichier csv
+     * @param list: Une liste de contact
+     * @throws Exception
+     * Ne renvoie rien
+     */
     public static void refreshlist(ArrayList<Contact> list) throws Exception{
         PrintWriter printwriter = new PrintWriter(new BufferedWriter(new FileWriter("contacts.csv", false)));
         try{
@@ -264,16 +328,10 @@ public class Contact implements Comparable<Contact>{
         }
     }
 
-    // afficher menu
-    // si click sur supprimer un contact
-    // demander à l'utilisateur de saisir le mail
-    // recuperer la liste
-    // parcourir les mails de la liste jusqu'a trouver le contact
-    // afficher les informations du contact contenant le mail saisi par l'utilisateur
-    // si click sur "d" afficher un message "Voulez-vous supprimer ce contact ?"
-    // si oui remove les infos enregistrées, sinon ne rien faire
 
-
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
     @Override
     // Redéfinir la méthode toString() héritée de la classe Object pour renvoyer une chaîne de caractères représentant l'objet Contact
     public String toString() {
@@ -306,6 +364,9 @@ public class Contact implements Comparable<Contact>{
         return builder.toString();
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
     @Override
     public int compareTo(Contact c) {
         if (this.getNom().compareTo(c.getNom()) == 0){

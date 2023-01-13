@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.io.PrintStream;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +21,12 @@ public class App{
     public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
 
 
-    // Déclarer une méthode nommée "main" qui prend en argument une chaîne de caractères et qui peut lever une Exception
+    /**
+     * La première méthode qui sera exécuter
+     * @param args: un tableau
+     * @throws Exception
+     * Ne renvoie rien
+     */
     public static void main(String[] args) throws Exception {
         
         // Afficher le menu
@@ -135,6 +139,10 @@ public class App{
     }
 
 
+    /**
+     * Permet d'afficher le menu dans l'invite de commande
+     * Ne renvoie rien
+     */
     public static void afficherMenu() {
         // Créer une liste de chaînes de caractères pour stocker les éléments du menu
         ArrayList<String> menus = new ArrayList<>();
@@ -226,7 +234,11 @@ public class App{
     }
 
 
-    // Méthode qui permet d'ajouter un contact
+    
+    /**
+     * Permet d'ajouter un contact, d'en créer un nouveau
+     * @return le contact créer
+     */
     private static Contact ajouterContact() {
         
         // Créer un objet Contact
@@ -290,6 +302,13 @@ public class App{
     }
 
 
+    /**
+     * Permet de créer le tableau du contact à modifier grâce au mail, de supprimer l'ancien, d'ajouter le contact modifié et de refresh la liste
+     * @param contactAModifier: Le mail du contact contact à modifier
+     * @throws IOException
+     * @throws Exception
+     * Ne renvoie rien
+     */
     private static void changeContact(String contactAModifier) throws IOException, Exception{
         try {
             ArrayList<Contact> list = Contact.listerContacts();
@@ -312,26 +331,32 @@ public class App{
     }
 
 
-    private static Contact ajouterContactModif(String[] contactAModifer) throws ParseException{
+    /**
+     * Permet de modifer le contact 
+     * @param contactAModifer: Le tableau du contact à modifier
+     * @return Le contact mofifié
+     * @throws ParseException
+     */
+    private static Contact ajouterContactModif(String[] tableauContactRecherche) throws ParseException{
         // Créer un objet Contact
         Contact contact = new Contact();
         
         // Demander de saisir le nom et appeler la méthode "setNom" de l'objet Contact
         System.out.println("Saisir le nom :");
-        System.out.println(contactAModifer[0]);
+        System.out.println(tableauContactRecherche[0]);
         String nom = _scan.nextLine();
         if(nom == ""){
-            contact.setNom(contactAModifer[0]);
+            contact.setNom(tableauContactRecherche[0]);
         }else{
             contact.setNom(nom);
         }
         
         // Demander de saisir le prénom et appeler la méthode "setPrenom" de l'objet Contact
         System.out.println("Saisir le prénom :");
-        System.out.println(contactAModifer[1]);
+        System.out.println(tableauContactRecherche[1]);
         String prenom = _scan.nextLine();
         if(prenom == ""){
-            contact.setPrenom(contactAModifer[1]);
+            contact.setPrenom(tableauContactRecherche[1]);
         }else{
             contact.setPrenom(prenom);
         }
@@ -341,10 +366,10 @@ public class App{
             // Essayer de saisir le numéro de téléphone et appeler la méthode "setTelephone" de l'objet Contact
             try {
                 System.out.println("Saisir le numéro de téléphone :");
-                System.out.println(contactAModifer[3]);
+                System.out.println(tableauContactRecherche[3]);
                 String telephone = _scan.nextLine();
                 if(telephone == ""){
-                    contact.setTelephone(contactAModifer[3]);
+                    contact.setTelephone(tableauContactRecherche[3]);
                 }else{
                     contact.setTelephone(telephone);
                 }
@@ -359,10 +384,10 @@ public class App{
             // Essayer de saisir l'adresse mail et appeler la méthode "setMail" de l'objet Contact
             try {
                 System.out.println("Saisir le mail :");
-                System.out.println(contactAModifer[2]);
+                System.out.println(tableauContactRecherche[2]);
                 String mail = _scan.nextLine();
                 if(mail == ""){
-                    contact.setMail(contactAModifer[2]);
+                    contact.setMail(tableauContactRecherche[2]);
                 }else{
                     contact.setMail(mail);
                 }
@@ -377,10 +402,10 @@ public class App{
             // Essayer de saisir la date de naissance et appeler la méthode "setDateNaissance" de l'objet Contact
             try {
                 System.out.println("Saisir la date de naissance :");
-                System.out.println(contactAModifer[4]);
+                System.out.println(tableauContactRecherche[4]);
                 String date = _scan.nextLine();
                 if(date == ""){
-                    contact.setDateNaissance(contactAModifer[4]);
+                    contact.setDateNaissance(tableauContactRecherche[4]);
                 }else{
                     contact.setDateNaissance(date);
                 }
@@ -404,6 +429,12 @@ public class App{
     }
 
 
+    /**
+     * Permet de supprimer le contact grâce au mail
+     * @param contactSupprimer: Le mail du contact à supprimer
+     * @throws IOException
+     * Ne renvoie rien
+     */
     private static void contactDelete(String contactSupprimer) throws IOException{
         try {
             ArrayList<Contact> list = Contact.listerContacts();
@@ -415,11 +446,16 @@ public class App{
         }
     }
 
-    private static void searchContactByPrenom(String prenom) throws IOException {
+    /**
+     * Permet de trouver le contact grâce au nom
+     * @param caracteres: Les caracteres pour la recherche
+     * @throws IOException
+     */
+    private static void searchContactByPrenom(String caracteres) throws IOException {
         ArrayList<Contact> list = Contact.listerContacts();
 
         List<Contact> contactFind = list.stream()
-                .filter((contact) -> contact.getPrenom().startsWith(prenom))
+                .filter((contact) -> contact.getPrenom().startsWith(caracteres))
                 .toList();
 
         System.out.println(contactFind);
