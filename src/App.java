@@ -112,7 +112,9 @@ public class App{
                     break;
                 case "7":
                     System.out.println("Saisir pour la recherche :");
-                    searchContactByPrenom(_scan.nextLine());
+                    String prenom = _scan.nextLine();
+                    prenom = prenom.replaceFirst(".",(prenom.charAt(0)+"").toUpperCase());
+                    searchContactByPrenom(prenom);
                     break;
                 case "q":
                     // Fermer le flux de données de l'objet Scanner
@@ -385,11 +387,11 @@ public class App{
         }
     }
 
-    private static void searchContactByPrenom(String nom) throws IOException {
+    private static void searchContactByPrenom(String prenom) throws IOException {
         ArrayList<Contact> list = Contact.listerContacts();
 
         List<Contact> contactFind = list.stream()
-                .filter((contact) -> contact.getPrenom().startsWith(nom))
+                .filter((contact) -> contact.getPrenom().startsWith(prenom))
                 .toList();
 
         System.out.println(contactFind);
