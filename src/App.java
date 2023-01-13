@@ -110,6 +110,10 @@ public class App{
                     System.out.println("Saisir le mail :");
                     contactDelete(_scan.nextLine());
                     break;
+                case "7":
+                    System.out.println("Saisir pour la recherche :");
+                    searchContactByPrenom(_scan.nextLine());
+                    break;
                 case "q":
                     // Fermer le flux de données de l'objet Scanner
                     _scan.close();
@@ -132,8 +136,9 @@ public class App{
         menus.add("| 2- Lister les contacts                           |");
         menus.add("| 3- Chercher un contact avec le nom               |");
         menus.add("| 4- Chercher un contact avec la date de naissance |"); 
-        menus.add("| 5- Modifier un contact                           |"); // A faire
+        menus.add("| 5- Modifier un contact                           |");
         menus.add("| 6- Supprimer un contact                          |"); 
+        menus.add("| 7- Recherche sur le prenom                       |");
         menus.add("| q- Quitter                                       |");
         menus.add("----------------------------------------------------");
         menus.add(ANSI_RESET);
