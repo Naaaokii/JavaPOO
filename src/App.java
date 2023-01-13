@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
@@ -377,5 +378,15 @@ public class App{
         } catch (Exception e) {
             System.out.println("Erreur de supression du contact");
         }
+    }
+
+    private static void searchContactByPrenom(String nom) throws IOException {
+        ArrayList<Contact> list = Contact.listerContacts();
+
+        List<Contact> contactFind = list.stream()
+                .filter((contact) -> contact.getPrenom().startsWith(nom))
+                .toList();
+
+        System.out.println(contactFind);
     }
 }
