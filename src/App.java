@@ -62,23 +62,43 @@ public class App{
                     String choixtri = _scan.nextLine();
                     switch(choixtri){
                         case "1":
-                        System.out.println("1- Par ordre alphabétique");
-                        System.out.println("2- Par ordre alphabétique inversé");
-                        String choixOrdre = _scan.nextLine();
-                        switch(choixOrdre){
-                            case "1":
-                                triNom(1);
-                                break;
-                            case "2":
-                                triNom(2);
-                                break;
-                        }
+                            System.out.println("1- Par ordre alphabétique");
+                            System.out.println("2- Par ordre alphabétique inversé");
+                            String choixOrdreNom = _scan.nextLine();
+                            switch(choixOrdreNom){
+                                case "1":
+                                    triNom(1);
+                                    break;
+                                case "2":
+                                    triNom(2);
+                                    break;
+                            }
                             break;
                         case "2":
-                            triMail();
+                            System.out.println("1- Par ordre alphabétique");
+                            System.out.println("2- Par ordre alphabétique inversé");
+                            String choixOrdreMail = _scan.nextLine();
+                            switch(choixOrdreMail){
+                                case "1":
+                                    triMail(1);
+                                    break;
+                                case "2":
+                                    triMail(2);
+                                    break;
+                            }
                             break;
                         case "3":
-                            triDate();
+                            System.out.println("1- Par ordre alphabétique");
+                            System.out.println("2- Par ordre alphabétique inversé");
+                            String choixOrdreDate = _scan.nextLine();
+                            switch(choixOrdreDate){
+                                case "1":
+                                    triDate(1);
+                                    break;
+                                case "2":
+                                    triDate(2);
+                                    break;
+                            }
                             break;
                         case "q":
                             // Fermer le flux de données de l'objet Scanner
@@ -150,10 +170,15 @@ public class App{
         }
     }
 
-    // 
 
 
-    public static void triNom(int ordre) throws IOException{
+    /**
+     * Permet de trier les contacts par noms dans l'ordre croissant ou non
+     * @param ordre: un entier (1 pour croissant et 2 pour non)
+     * @throws IOException
+     * Ne renvoie rien
+     */
+    private static void triNom(int ordre) throws IOException{
         try{
             ArrayList<Contact> list = Contact.listerContacts();
             Collections.sort(list);
@@ -168,7 +193,12 @@ public class App{
     }
 
     
-    public static void triMail() throws IOException{
+    /**
+     * Permet de trier les contacts par mails dans l'ordre alphabétique
+     * @throws IOException
+     * Ne renvoie rien
+     */
+    private static void triMail(int ordre) throws IOException{
         try{
             ArrayList<Contact> list = Contact.listerContacts();
             Collections.sort(list, new Comparator<Contact>() {
@@ -177,6 +207,9 @@ public class App{
                     return c1.getMail().compareTo(c2.getMail());
                 }
             });
+            if (ordre == 2){
+                Collections.reverse(list);
+            }
             String str = list.toString().replaceAll(",", "\n").replaceAll(SEPARATEUR, " ");
             System.out.println(str);
         }catch (IOException exception){
@@ -185,11 +218,14 @@ public class App{
     }
 
 
-    public static void triDate() throws IOException{
+    private static void triDate(int ordre) throws IOException{
         try{
             ArrayList<Contact> list = Contact.listerContacts();
             Comparer comparer = new Comparer();
             Collections.sort(list, comparer);
+            if (ordre == 2){
+                Collections.reverse(list);
+            }
             String str = list.toString().replaceAll(",", "\n").replaceAll(SEPARATEUR, " ");
             System.out.println(str);
         }catch (IOException exception){
