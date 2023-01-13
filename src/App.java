@@ -19,23 +19,8 @@ public class App{
     public static final String SEPARATEUR = ";";
 
     public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_WHITE = "\u001B[37m";
-
-    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
-    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
-    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
-    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
-    public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
     public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
-    public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
-    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+
 
     // Déclarer une méthode nommée "main" qui prend en argument une chaîne de caractères et qui peut lever une Exception
     public static void main(String[] args) throws Exception {
@@ -62,8 +47,8 @@ public class App{
                     String choixtri = _scan.nextLine();
                     switch(choixtri){
                         case "1":
-                            System.out.println("1- Par ordre alphabétique");
-                            System.out.println("2- Par ordre alphabétique inversé");
+                            System.out.println("1- Dans l'ordre croissant");
+                            System.out.println("2- Dans l'ordre décroissant");
                             String choixOrdreNom = _scan.nextLine();
                             switch(choixOrdreNom){
                                 case "1":
@@ -75,8 +60,8 @@ public class App{
                             }
                             break;
                         case "2":
-                            System.out.println("1- Par ordre alphabétique");
-                            System.out.println("2- Par ordre alphabétique inversé");
+                            System.out.println("1- Dans l'ordre croissant");
+                            System.out.println("2- Dans l'ordre décroissant");
                             String choixOrdreMail = _scan.nextLine();
                             switch(choixOrdreMail){
                                 case "1":
@@ -88,8 +73,8 @@ public class App{
                             }
                             break;
                         case "3":
-                            System.out.println("1- Par ordre alphabétique");
-                            System.out.println("2- Par ordre alphabétique inversé");
+                            System.out.println("1- Dans l'ordre croissant");
+                            System.out.println("2- Dans l'ordre décroissant");
                             String choixOrdreDate = _scan.nextLine();
                             switch(choixOrdreDate){
                                 case "1":
@@ -173,8 +158,8 @@ public class App{
 
 
     /**
-     * Permet de trier les contacts par noms dans ordre alphabétique et dans l'ordre croissant ou non
-     * @param ordre: un entier (1 pour croissant et 2 pour non)
+     * Permet de trier les contacts par noms dans l'ordre croissant ou non
+     * @param ordre: un entier (1 ou autre pour croissant et 2 pour décroissant)
      * @throws IOException
      * Ne renvoie rien
      */
@@ -194,8 +179,8 @@ public class App{
 
     
     /**
-     * Permet de trier les contacts par mails dans l'ordre alphabétique et dans l'ordre croissant ou non
-     * @param ordre: un entier (1 pour croissant et 2 pour non)
+     * Permet de trier les contacts par mails dans l'ordre croissant ou non
+     * @param ordre: un entier (1 ou autre pour croissant et 2 pour décroissant)
      * @throws IOException
      * Ne renvoie rien
      */
@@ -220,8 +205,8 @@ public class App{
 
 
     /**
-     * Permet de trier les contacts par date de naissance dans l'ordre alphabétique et dans l'ordre croissant ou non
-     * @param ordre: un entier (1 pour croissant et 2 pour non)
+     * Permet de trier les contacts par date de naissance dans l'ordre croissant ou non
+     * @param ordre: un entier (1 ou autre pour croissant et 2 pour décroissant)
      * @throws IOException
      * Ne renvoie rien
      */
