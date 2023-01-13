@@ -61,7 +61,17 @@ public class App{
                     String choixtri = _scan.nextLine();
                     switch(choixtri){
                         case "1":
-                            triNom();
+                        System.out.println("1- Par ordre alphabétique");
+                        System.out.println("2- Par ordre alphabétique inversé");
+                        String choixOrdre = _scan.nextLine();
+                        switch(choixOrdre){
+                            case "1":
+                                triNom(1);
+                                break;
+                            case "2":
+                                triNom(2);
+                                break;
+                        }
                             break;
                         case "2":
                             triMail();
@@ -135,10 +145,13 @@ public class App{
     // 
 
 
-    public static void triNom() throws IOException{
+    public static void triNom(int ordre) throws IOException{
         try{
             ArrayList<Contact> list = Contact.listerContacts();
             Collections.sort(list);
+            if (ordre == 2){
+                Collections.reverse(list);
+            }
             String str = list.toString().replaceAll(",", "\n").replaceAll(SEPARATEUR, " ");
             System.out.println(str);
         }catch (IOException exception){
