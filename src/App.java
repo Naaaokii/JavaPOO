@@ -173,7 +173,7 @@ public class App{
 
 
     /**
-     * Permet de trier les contacts par noms dans l'ordre croissant ou non
+     * Permet de trier les contacts par noms dans ordre alphabétique et dans l'ordre croissant ou non
      * @param ordre: un entier (1 pour croissant et 2 pour non)
      * @throws IOException
      * Ne renvoie rien
@@ -194,7 +194,8 @@ public class App{
 
     
     /**
-     * Permet de trier les contacts par mails dans l'ordre alphabétique
+     * Permet de trier les contacts par mails dans l'ordre alphabétique et dans l'ordre croissant ou non
+     * @param ordre: un entier (1 pour croissant et 2 pour non)
      * @throws IOException
      * Ne renvoie rien
      */
@@ -218,6 +219,12 @@ public class App{
     }
 
 
+    /**
+     * Permet de trier les contacts par date de naissance dans l'ordre alphabétique et dans l'ordre croissant ou non
+     * @param ordre: un entier (1 pour croissant et 2 pour non)
+     * @throws IOException
+     * Ne renvoie rien
+     */
     private static void triDate(int ordre) throws IOException{
         try{
             ArrayList<Contact> list = Contact.listerContacts();
